@@ -1,0 +1,29 @@
+*Objective
+To segment employees based on department and salary, and identify high-earning individuals in non-priority departments using multiple routing and data flow techniques in Informatica.
+
+*Project Workflow
+-Source:
+Flat file containing employee records with fields: ID, FirstName, LastName, Dept_ID, Salary.
+
+-Source Qualifier Transformation:
+Reads from the flat file and filters out any rows with NULL Dept_ID or Salary.
+
+-Router #1 – Salary-Based Segmentation:
+Routes remaining records based on:
+Salary > 5500
+Default group: Others
+
+-Router #2 – Department-Based Segmentation:
+Routes data into separate groups:
+Dept_ID = 10
+Dept_ID = 20
+Dept_ID = 30
+Default group: All other departments
+
+-Union Transformation:
+Combines the default output from Router #1 (non-priority departments) with the default group from Router #2 (non-high earners).
+Creates a merged output for "Other Employees".
+
+-Targets:
+Separate relational tables for departments 10, 20, and 30.
+One consolidated table for "Other Employees" (those not in target departments and not high earners).
