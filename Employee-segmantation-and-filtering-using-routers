@@ -27,3 +27,6 @@ Creates a merged output for "Other Employees".
 -Targets:
 Separate relational tables for departments 10, 20, and 30.
 One consolidated table for "Other Employees" (those not in target departments and not high earners).
+
+*Presentation Slides
+[download poweroint presentation]---(https://drive.google.com/drive/folders/1YIdNKQdP1URN998tRrlRnoYCWpJzdN2r)
