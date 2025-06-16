@@ -1,0 +1,82 @@
+# 🎓 Student-Subject Mapping ETL Project (Informatica PowerCenter)
+
+This project demonstrates a simple ETL (Extract, Transform, Load) process using **Informatica PowerCenter**, where data is sourced from two oracle tables, joined, and loaded into an Oracle database table.
+
+## 📌 Objective
+
+To create a mapping that merges student and subject data using a join key (SubjectID), then loads the enriched data into a structured target table in Oracle.
+
+## 📁 Source Files
+
+1. **Subjects File** (`Source 1 - oracle File`)
+   - `SubjectID`
+   - `SubjectName`
+
+2. **Student-Subject File** (`Source 2 - oracle File`)
+   - StudentID
+   - S_ID`
+
+## 🔄 Workflow
+
+1. **Read Data from oracle Files**  
+   - Imported two oracle file sources containing subject and student-subject relationship data.
+
+2. **Sorter Transformation**  
+   - Applied on both sources to **improve performance** before joining.  
+   - Sorted on `SubjectID`.
+
+3. **Joiner Transformation**  
+   - Join Condition: `SubjectID` (Primary Key in Subject file, Foreign Key in Student-Subject file)  
+   - Join Type: Inner Join for one time the other master hoin
+
+4. **Target Table (Oracle)**  
+   - The final output is loaded into an Oracle table containing:
+     - `StudentID`
+     - `SubjectID`
+     - `SubjectName`
+
+❗ Issue Faced During Load
+Problem:
+The session failed because the Oracle target table did not allow NULL values in the foreign key column (SubjectID). Some incoming records contained NULL in this field, which caused a 
+constraint violation and prevented the data from loading.
+
+Resolution:
+To fix this:
+The target table structure was modified to allow NULL values in the SubjectID column.
+The session was re-executed successfully after the change.
+
+✅ Final Outcome
+Records were successfully joined and loaded into the Oracle target table.
+The session completed without errors and was verified through Workflow Monitor.
+The process demonstrated an optimized and reliable data flow using sorting, joining, and RDBMS loading techniques.
+
+
+
+## 🧰 Tools & Technologies
+
+- **Informatica PowerCenter**
+- **Oracle Database**
+
+## 🧪 Key Concepts Practiced
+
+- oracle File Import
+- Sorter Transformation
+- Joiner Transformation (PK/FK logic)
+- Target Load to RDBMS
+- Performance optimization through pre-sort
+
+## 📈 Output Sample
+
+| StudentID | SubjectID | SubjectName   |
+|-----------|-----------|----------------|
+| 1001      | MTH101    | Mathematics    |
+| 1002      | PHY102    | Physics        |
+
+## 🔄 Future Enhancements
+
+- Add `StudentName` by joining with a third student master file  
+- Apply filters to exclude inactive students  
+
+## Visuals for the project
+Viuals link: (https://drive.google.com/drive/folders/17lKErF1aB0djj2hJvBDByWYUMqdv_GT5)
+
