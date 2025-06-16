@@ -1,0 +1,65 @@
+
+## 📌 Objective
+
+This project demonstrates how to use a **Lookup transformation** in **Informatica PowerCenter** to enrich country data with additional region details from a reference table.
+To join country data with region metadata based on `RegionID` using a **Lookup transformation**, and load the enriched dataset into an Oracle target table.
+
+## 🧾 Source Details
+
+- **Source Type**: Oracle Table  
+- **Source Table Fields**:
+  - `CountryID`
+  - `CountryRegion`
+  - `RegionID`
+
+This table provides country-level information with a reference to a `RegionID`.
+
+## 🔍 Lookup Transformation
+
+- **Lookup Table**: Oracle table containing region metadata  
+- **Lookup Fields**:
+  - `RegionID`
+  - `RegionName`
+  - `Location`
+
+### 🔁 Lookup Logic
+
+- **Join Condition**:  
+  - Source `RegionID` = Lookup `RegionID`
+  
+- **Returned Fields**:
+  - `RegionName` is retrieved from the lookup table based on the matching `RegionID`.
+
+## 🎯 Target Table
+
+- **Target Type**: Oracle Table  
+- **Target Table Name**: Final enriched table  
+- **Fields Inserted**:
+  - `CountryID`
+  - `CountryRegion`
+  - `RegionID`
+  - `RegionName` (from Lookup)
+
+## 🔄 Workflow Overview
+
+1. **Source Definition**: Read country data from Oracle.
+2. **Lookup Transformation**: Fetch `RegionName` based on `RegionID`.
+3. **Mapping**: Connect source and lookup fields, handling nulls if necessary.
+4. **Target Load**: Insert enriched data into an Oracle table.
+
+## 🧪 Key Concepts Practiced
+
+- Performing **Lookup Join** within Informatica mappings
+- Enhancing data from a secondary source
+- Mapping and routing enriched fields to a structured target
+- Working with Oracle sources and targets
+
+## 🛠️ Future Enhancements
+
+- Add location field to the target table for complete metadata
+- Handle unmatched `RegionID` values (null-safe lookups)
+- Apply audit trail columns like `LoadDate`, `SourceFile`, etc.
+
+## 📂 Visuals
+
+Link: (https://drive.google.com/drive/folders/1nXKrJaXKetBtIWskt5Q9mlTy_FiPPEKA)
