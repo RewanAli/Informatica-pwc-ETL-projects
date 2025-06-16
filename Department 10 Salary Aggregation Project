@@ -1,0 +1,61 @@
+
+## 📌 Objective
+
+This ETL project demonstrates how to extract employee data from a flat file, apply transformations including filtering, sorting, and aggregation, and load the summarized result into an Oracle database table.
+To calculate the **total salary** of employees in **Department 10** and store the result in an Oracle table.
+
+## 📁 Source Details
+
+- **Source Type**: Flat File
+- **Source Fields**:
+  - `EmployeeID`
+  - `FName` (First Name)
+  - `LName` (Last Name)
+  - `Salary`
+  - `Dept_ID`
+
+## 🔄 ETL Workflow
+
+### 1. **Filter Transformation**
+- Applied a filter to select only records where:
+  ```sql
+  Dept_ID = '10'
+
+2. Sorter Transformation
+Sorted the filtered records by Salary in ascending order to ensure clean and optimized aggregation.
+
+3. Aggregator Transformation
+Grouped by Dept_ID
+Aggregated function:
+SUM(Salary) → Calculates the total salary for Department 10
+
+4. Target Load
+Target Type: Oracle Table
+Fields Loaded:
+Dept_ID
+Sum_Salary (total salary of dept 10 employees)
+
+🧪 Key Concepts Practiced
+Reading structured data from flat files
+Conditional filtering using Filter transformation
+Data ordering using Sorter transformation
+Aggregation with group-by logic in Aggregator
+Oracle target integration
+
+🖼️ Output Example
+Dept_ID	Sum_Salary
+10	155000
+
+🛠️ Tools Used
+Informatica PowerCenter
+Flat File as Source
+Oracle Database as Target
+
+🧯 Potential Enhancements
+Add columns like LoadDate or RecordCount for auditing
+Parameterize the department number for reusability
+Add exception handling for records with null or invalid salaries
+
+🖼️ visuals: (https://drive.google.com/drive/folders/1N0Qa20bX_4QPbirOnN-UrXgUmaXRfGoF)
+
+
