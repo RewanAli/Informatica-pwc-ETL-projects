@@ -1,0 +1,49 @@
+
+## 📌 Objective
+This project demonstrates how to handle **inserts**, **updates**, and **deletes** from a flat file using **Update Strategy** and **Expression transformations**, followed by loading the results into an Oracle target table.
+
+To read employee data from a flat file, determine the appropriate DML operation based on a flag field, generate full names, and load or update records in the Oracle target table accordingly.
+
+## 📁 Source Details
+
+- **Source Type**: Flat File  
+- **Source Fields**:
+  - `ID`  
+  - `FName` (First Name)  
+  - `LName` (Last Name)  
+  - `Salary`  
+  - `DeptID`  
+  - `Flag` (`1` = Insert, `2` = Update, `3` = Delete)
+
+
+## 🔄 ETL Workflow
+
+### 1. **Update Strategy Transformation**
+- Based on the value of the `Flag` column:
+  - `1` → **Insert**
+  - `2` → **Update**
+  - `3` → **Delete**
+
+2. Expression Transformation
+Concatenates FName and LName to create a full name:
+plaintext
+Copy
+Edit
+Name = FName || ' ' || LName
+
+3. Target Load
+Target Type: Oracle Table
+
+Fields Loaded:
+ID
+Name (concatenated full name)
+Salary
+DeptID
+
+🧪 Key Concepts Practiced
+Handling multiple DML operations in a single mapping
+Using Update Strategy for row-level control
+Data transformation using expressions
+Target load to Oracle database
+
+## 🔄 visuals: (https://drive.google.com/drive/folders/1U7Eh5OAgxJm9yplJiVgumxsMNdcBoiep)
