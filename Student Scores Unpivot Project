@@ -1,0 +1,71 @@
+## 📌 Objective
+
+This ETL project demonstrates how to use the **Normalizer transformation** in **Informatica PowerCenter** to convert wide-format subject scores into a long-format structure suitable for analysis and reporting.
+To unpivot student score data from a single row per student into multiple rows — one for each subject — and load it into an Oracle table named `UNPIVOT`.
+
+## 🧾 Source Details
+
+- **Source Type**: Oracle Table
+- **Source Table Fields**:
+  - `StudentID`
+  - `S_Name` (Student Name)
+  - `Math`
+  - `Science`
+  - `English`
+
+Each student has one row with individual subject scores stored in separate columns.
+
+## 🔄 ETL Workflow
+
+### 1. **Source Definition**
+- The data is imported from an **Oracle source table** containing student names and their scores in three subjects.
+
+### 2. **Normalizer Transformation**
+- The `Normalizer` is used to **convert columns into rows**.
+- Repeats the score fields (`Math`, `Science`, `English`) using **occurrence=3**.
+- The transformation produces:
+  - `GK_SCORE` → Generated key to identify each score instance.
+  - `S_Name` → Student name passed through.
+  - `Subject_Score` → Holds the actual score.
+  - `GCIDScore` → Generated column ID used to identify the subject.
+
+### 3. **Target Definition**
+- Data is loaded into an **Oracle target table** named `UNPIVOT`, with the following structure:
+  - `S_ID` → Mapped from `GK_SCORE`
+  - `S_Name` → Student name
+  - `Subject_Score` → The unpivoted score value
+  - `Subject_Code` → Mapped from `GCIDScore` to identify the subject
+
+## 🧰 Tools & Technologies
+
+- **Informatica PowerCenter**
+- **Oracle Database**
+- **Normalizer Transformation**
+
+## 🧪 Key Concepts Practiced
+
+- Use of **Normalizer** to unpivot structured data
+- Repeating groups in source rows
+- Mapping normalized output to structured target
+- Loading long-format data into Oracle
+
+## 🖼️ Example Output
+
+| S_ID | S_Name   | Subject_Score | Subject_Code |
+|------|----------|----------------|---------------|
+| 1    | John Doe | 85             | 1 (Math)      |
+| 1    | John Doe | 92             | 2 (Science)   |
+| 1    | John Doe | 78             | 3 (English)   |
+
+> Note: `Subject_Code` (GCIDScore) can later be mapped to subject names using a reference table or a decoding logic.
+
+## 🛠️ Future Enhancements
+
+- Decode `Subject_Code` to show actual subject names (`Math`, `Science`, `English`)
+- Add `Load_Date` column for audit tracking
+- Apply filters for active/inactive students if needed
+
+## 📂 Visuals
+
+visuals link: (https://drive.google.com/drive/folders/1FD2aoCjgVGvb55r78x0J5FH7YTxvH01I)
+
