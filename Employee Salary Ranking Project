@@ -1,0 +1,41 @@
+## 📌 Project Overview
+
+This project demonstrates a simple ETL pipeline using **Informatica PowerCenter** to generate ranked salary data for employees. The source is an **Oracle database table**,
+and the final output is written to a **flat file** with a salary-based ranking for each employee.
+
+## 🔄 ETL Workflow Description
+
+### 🔹 **Source**
+- **Type**: Oracle table  
+- **Fields**:  
+  - `empID` (Employee ID)  
+  - `deptID` (Department ID)  
+  - `salary` (Employee Salary)
+
+### 🔹 **Transformations**
+1. **Sorter Transformation**
+   - Sorts the input records **in ascending order of salary**.
+   - Ensures the employees with the lowest salaries come first.
+
+2. **Sequence Generator Transformation**
+   - Adds a **sequential number** to each sorted record.
+   - This number represents the **salary rank**.
+
+### 🔹 **Target**
+- **Type**: Flat File  
+- **Fields**:  
+  - `EID` (Employee ID)  
+  - `DID` (Department ID)  
+  - `salary`  
+  - `rank` (Generated from Sequence Generator)
+
+## 🛠️ Tools Used
+
+- **Informatica PowerCenter Designer** (for mappings and transformations)
+- **Informatica Workflow Manager** (for creating and running workflows)
+- **Oracle DB** (source)
+- **Flat file output** (target CSV or text file)
+
+## 📁 Project Visuals
+link: (https://drive.google.com/drive/folders/1JU66a_2YgTJ74g7fCa1I12m6bwc30PRN)
+
